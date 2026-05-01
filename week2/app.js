@@ -1,11 +1,17 @@
 const express = require("express");
-
 const app = express();
+
+// 라우터 모듈 불러오기
+const foodRouter = require('./food');
+const mathRouter = require('./math');
 
 app.get("/user/:id", (req, res, next) => {
     const id = req.params.id;
-    if(id !== "1") res.send('You are not welcomed!');
-    else next();
+    if (id !== "1") {
+        res.send('You are not welcomed!');
+    } else {
+        next();
+    }
 });
 
 app.get("/user/:id", (req, res, next) => {
@@ -26,7 +32,6 @@ app.get("/math/sum", (req, res) => {
     const b = req.query.b;
     res.send(`${a} + ${b} 는 ${Number(a)+Number(b)} 입니다!`);
 });
-
 
 app.listen(8080, () => {
     console.log('Server listening on port 8080!');
